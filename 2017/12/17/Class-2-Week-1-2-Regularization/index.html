@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -93,9 +93,11 @@
 <meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/output_11_0.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/output_22_1.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/output_24_0.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/dropout1_kiank.gif">
+<meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/dropout2_kiank.gif">
 <meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/output_35_3.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/17/Class-2-Week-1-2-Regularization/output_37_0.png">
-<meta property="og:updated_time" content="2017-12-17T07:29:37.000Z">
+<meta property="og:updated_time" content="2017-12-17T08:39:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 2 Week 1 2.Regularization">
 <meta name="twitter:description" content="RegularizationWelcome to the second assignment of this week. Deep Learning models have so much flexibility and capacity that overfitting can be a serious problem, if the training dataset is not big en">
@@ -135,7 +137,7 @@
 
 
 
-  <title>deeplearning.ai homework：Class 2 Week 1 2.Regularization | Observer</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>deeplearning.ai homework：Class 2 Week 1 2.Regularization | Observer</title>
   
 
 
@@ -154,7 +156,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -405,7 +407,7 @@
       
 
       
-        <h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><p>Welcome to the second assignment of this week. Deep Learning models have so much flexibility and capacity that <strong>overfitting can be a serious problem</strong>, if the training dataset is not big enough. Sure it does well on the training set, but the learned network <strong>doesn’t generalize to new examples</strong> that it has never seen!</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><p>Welcome to the second assignment of this week. Deep Learning models have so much flexibility and capacity that <strong>overfitting can be a serious problem</strong>, if the training dataset is not big enough. Sure it does well on the training set, but the learned network <strong>doesn’t generalize to new examples</strong> that it has never seen!</p>
 <p><strong>You will learn to:</strong> Use regularization in your deep learning models.</p>
 <a id="more"></a>
 <p>Let’s first import the packages you are going to use.</p>
@@ -475,7 +477,7 @@ Accuracy: 0.915
 </table> 
 
 <p>Of course, because you changed the cost, you have to change backward propagation as well! All the gradients have to be computed with respect to this new cost. </p>
-<p><strong>Exercise</strong>: Implement the changes needed in backward propagation to take into account regularization. The changes only concern dW1, dW2 and dW3. For each, you have to add the regularization term’s gradient ($\frac{d}{dW} ( \frac{1}{2}\frac{\lambda}{m}  W^2) = \frac{\lambda}{m} W$).</p>
+<p><strong>Exercise</strong>: Implement the changes needed in backward propagation to take into account regularization. The changes only concern dW1, dW2 and dW3. For each, you have to add the regularization term’s gradient (<script type="math/tex">\frac{d}{dW} ( \frac{1}{2}\frac{\lambda}{m}  W^2) = \frac{\lambda}{m} W</script>).</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: backward_propagation_with_regularization</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backward_propagation_with_regularization</span><span class="params">(X, Y, cache, lambd)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implements the backward propagation of our baseline model to which we added an L2 regularization.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    X -- input dataset, of shape (input size, number of examples)</span></span><br><span class="line"><span class="string">    Y -- "true" labels vector, of shape (output size, number of examples)</span></span><br><span class="line"><span class="string">    cache -- cache output from forward_propagation()</span></span><br><span class="line"><span class="string">    lambd -- regularization hyperparameter, scalar</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    m = X.shape[<span class="number">1</span>]</span><br><span class="line">    (Z1, A1, W1, b1, Z2, A2, W2, b2, Z3, A3, W3, b3) = cache</span><br><span class="line">    </span><br><span class="line">    dZ3 = A3 - Y</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ### (approx. 1 line)</span></span><br><span class="line">    dW3 = <span class="number">1.</span>/m * np.dot(dZ3, A2.T) + lambd * W3 / m</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    db3 = <span class="number">1.</span>/m * np.sum(dZ3, axis=<span class="number">1</span>, keepdims = <span class="keyword">True</span>)</span><br><span class="line">    </span><br><span class="line">    dA2 = np.dot(W3.T, dZ3)</span><br><span class="line">    dZ2 = np.multiply(dA2, np.int64(A2 &gt; <span class="number">0</span>))</span><br><span class="line">    <span class="comment">### START CODE HERE ### (approx. 1 line)</span></span><br><span class="line">    dW2 = <span class="number">1.</span>/m * np.dot(dZ2, A1.T) + lambd * W2 / m</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    db2 = <span class="number">1.</span>/m * np.sum(dZ2, axis=<span class="number">1</span>, keepdims = <span class="keyword">True</span>)</span><br><span class="line">    </span><br><span class="line">    dA1 = np.dot(W2.T, dZ2)</span><br><span class="line">    dZ1 = np.multiply(dA1, np.int64(A1 &gt; <span class="number">0</span>))</span><br><span class="line">    <span class="comment">### START CODE HERE ### (approx. 1 line)</span></span><br><span class="line">    dW1 = <span class="number">1.</span>/m * np.dot(dZ1, X.T) + lambd * W1 / m</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    db1 = <span class="number">1.</span>/m * np.sum(dZ1, axis=<span class="number">1</span>, keepdims = <span class="keyword">True</span>)</span><br><span class="line">    </span><br><span class="line">    gradients = &#123;<span class="string">"dZ3"</span>: dZ3, <span class="string">"dW3"</span>: dW3, <span class="string">"db3"</span>: db3,<span class="string">"dA2"</span>: dA2,</span><br><span class="line">                 <span class="string">"dZ2"</span>: dZ2, <span class="string">"dW2"</span>: dW2, <span class="string">"db2"</span>: db2, <span class="string">"dA1"</span>: dA1, </span><br><span class="line">                 <span class="string">"dZ1"</span>: dZ1, <span class="string">"dW1"</span>: dW1, <span class="string">"db1"</span>: db1&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> gradients</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X_assess, Y_assess, cache = backward_propagation_with_regularization_test_case()</span><br><span class="line"></span><br><span class="line">grads = backward_propagation_with_regularization(X_assess, Y_assess, cache, lambd = <span class="number">0.7</span>)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"dW1 = "</span>+ str(grads[<span class="string">"dW1"</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"dW2 = "</span>+ str(grads[<span class="string">"dW2"</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"dW3 = "</span>+ str(grads[<span class="string">"dW3"</span>]))</span><br></pre></td></tr></table></figure>
 <pre><code>dW1 = [[-0.25604646  0.12298827 -0.28297129]
@@ -556,25 +558,12 @@ Accuracy: 0.93
 </li>
 </ul>
 <h2 id="3-Dropout"><a href="#3-Dropout" class="headerlink" title="3 - Dropout"></a>3 - Dropout</h2><p>Finally, <strong>dropout</strong> is a widely used regularization technique that is specific to deep learning.<br><strong>It randomly shuts down some neurons in each iteration.</strong> Watch these two videos to see what this means!</p>
-<!--
-To understand drop-out, consider this conversation with a friend:
-- Friend: "Why do you need all these neurons to train your network and classify images?". 
-- You: "Because each neuron contains a weight and can learn specific features/details/shape of an image. The more neurons I have, the more featurse my model learns!"
-- Friend: "I see, but are you sure that your neurons are learning different features and not all the same features?"
-- You: "Good point... Neurons in the same layer actually don't talk to each other. It should be definitly possible that they learn the same image features/shapes/forms/details... which would be redundant. There should be a solution."
-!--> 
-<center>
-<video src="Class-2-Week-1-2-Regularization/dropout1_kiank.mp4" type="video/mp4" controls>
-</video>
-</center>
-<br>
+<img src="/2017/12/17/Class-2-Week-1-2-Regularization/dropout1_kiank.gif">
+<p><br></p>
 <caption><center> <u> Figure 2 </u>: Drop-out on the second hidden layer. <br> At each iteration, you shut down (= set to zero) each neuron of a layer with probability $1 - keep\_prob$ or keep it with probability $keep\_prob$ (50% here). The dropped neurons don't contribute to the training in both the forward and backward propagations of the iteration. </center></caption>
 
-<center>
-<video src="Class-2-Week-1-2-Regularization/dropout2_kiank.mp4" type="video/mp4" controls>
-</video>
-</center>
 
+<img src="/2017/12/17/Class-2-Week-1-2-Regularization/dropout2_kiank.gif">
 <caption><center> <u> Figure 3 </u>: Drop-out on the first and third hidden layers. <br> $1^{st}$ layer: we shut down on average 40% of the neurons.  $3^{rd}$ layer: we shut down on average 20% of the neurons. </center></caption>
 
 
@@ -582,7 +571,7 @@ To understand drop-out, consider this conversation with a friend:
 <h3 id="3-1-Forward-propagation-with-dropout"><a href="#3-1-Forward-propagation-with-dropout" class="headerlink" title="3.1 - Forward propagation with dropout"></a>3.1 - Forward propagation with dropout</h3><p><strong>Exercise</strong>: Implement the forward propagation with dropout. You are using a 3 layer neural network, and will add dropout to the first and second hidden layers. We will not apply dropout to the input layer or output layer. </p>
 <p><strong>Instructions</strong>:<br>You would like to shut down some neurons in the first and second layers. To do that, you are going to carry out 4 Steps:</p>
 <ol>
-<li>In lecture, we dicussed creating a variable $d^{[1]}$ with the same shape as $a^{[1]}$ using <code>np.random.rand()</code> to randomly get numbers between 0 and 1. Here, you will use a vectorized implementation, so create a random matrix $D^{[1]} = [d^{<a href="1">1</a>} d^{<a href="2">1</a>} … d^{<a href="m">1</a>}] $ of the same dimension as $A^{[1]}$.</li>
+<li>In lecture, we dicussed creating a variable $d^{[1]}$ with the same shape as $a^{[1]}$ using <code>np.random.rand()</code> to randomly get numbers between 0 and 1. Here, you will use a vectorized implementation, so create a random matrix <script type="math/tex">D^{[1]} = [d^{[1](1)} d^{[1](2)} ... d^{[1](m)}]</script> of the same dimension as $A^{[1]}$.</li>
 <li>Set each entry of $D^{[1]}$ to be 0 with probability (<code>1-keep_prob</code>) or 1 with probability (<code>keep_prob</code>), by thresholding values in $D^{[1]}$ appropriately. Hint: to set all the entries of a matrix X to 0 (if entry is less than 0.5) or 1 (if entry is more than 0.5) you would do: <code>X = (X &lt; 0.5)</code>. Note that 0 and 1 are respectively equivalent to False and True.</li>
 <li>Set $A^{[1]}$ to $A^{[1]} * D^{[1]}$. (You are shutting down some neurons). You can think of $D^{[1]}$ as a mask, so that when it is multiplied with another matrix, it shuts down some of the values.</li>
 <li>Divide $A^{[1]}$ by <code>keep_prob</code>. By doing this you are assuring that the result of the cost will still have the same expected value as without drop-out. (This technique is also called inverted dropout.)</li>
@@ -649,14 +638,6 @@ dA2 = [[ 0.58180856  0.         -0.00299679  0.         -0.27715731]
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parameters = model(train_X, train_Y, keep_prob = <span class="number">0.86</span>, learning_rate = <span class="number">0.3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"On the train set:"</span>)</span><br><span class="line">predictions_train = predict(train_X, train_Y, parameters)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"On the test set:"</span>)</span><br><span class="line">predictions_test = predict(test_X, test_Y, parameters)</span><br></pre></td></tr></table></figure>
 <pre><code>Cost after iteration 0: 0.6543912405149825
-
-
-/Applications/Machine_Learning/Source/Resource/deeplearning.ai-master/02-课后作业/来自群友/02-第二课 改善深层神经网络/assignment1/reg_utils.py:236: RuntimeWarning: divide by zero encountered in log
-  logprobs = np.multiply(-np.log(a3),Y) + np.multiply(-np.log(1 - a3), 1 - Y)
-/Applications/Machine_Learning/Source/Resource/deeplearning.ai-master/02-课后作业/来自群友/02-第二课 改善深层神经网络/assignment1/reg_utils.py:236: RuntimeWarning: invalid value encountered in multiply
-  logprobs = np.multiply(-np.log(a3),Y) + np.multiply(-np.log(1 - a3), 1 - Y)
-
-
 Cost after iteration 10000: 0.0610169865749056
 Cost after iteration 20000: 0.060582435798513114
 </code></pre><img src="/2017/12/17/Class-2-Week-1-2-Regularization/output_35_3.png">
@@ -779,6 +760,10 @@ Accuracy: 0.95
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/12/17/Class-2-Week-1-3-Gradient-Checking/" rel="prev" title="deeplearning.ai homework：Class 2 Week 1 3.Gradient Checking">
+                deeplearning.ai homework：Class 2 Week 1 3.Gradient Checking <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -863,7 +848,7 @@ Accuracy: 0.95
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -885,7 +870,7 @@ Accuracy: 0.95
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1595,7 +1580,7 @@ Accuracy: 0.95
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
