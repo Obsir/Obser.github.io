@@ -87,18 +87,18 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Deep Neural Network for Image Classification: ApplicationWhen you finish this, you will have finished the last programming assignment of Week 4, and also the last programming assignment of this course">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/output_7_1.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/imvectorkiank.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/2layerNN_kiank.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/LlayerNN_kiank.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/output_18_1.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/output_30_1.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/output_38_0.png">
-<meta property="og:updated_time" content="2017-12-17T10:13:20.000Z">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_7_1.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/imvectorkiank.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/2layerNN_kiank.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/LlayerNN_kiank.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_18_1.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_30_1.png">
+<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_38_0.png">
+<meta property="og:updated_time" content="2017-12-18T11:03:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 1 Week 4 assignment4_2">
 <meta name="twitter:description" content="Deep Neural Network for Image Classification: ApplicationWhen you finish this, you will have finished the last programming assignment of Week 4, and also the last programming assignment of this course">
-<meta name="twitter:image" content="http://yoursite.com/2017/12/07/Class-1-Week-4-assignment4-2/output_7_1.png">
+<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_7_1.png">
 
 
 
@@ -309,7 +309,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Obser">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar_xl.jpg">
+      <meta itemprop="image" content="http://p15k33cxk.bkt.clouddn.com/image/avatar_xl.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -432,7 +432,7 @@
 <p>The following code will show you an image in the dataset. Feel free to change the index and re-run the cell multiple times to see other images. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of a picture</span></span><br><span class="line">index = <span class="number">7</span></span><br><span class="line">plt.imshow(train_x_orig[index])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(train_y[<span class="number">0</span>,index]) + <span class="string">". It's a "</span> + classes[train_y[<span class="number">0</span>,index]].decode(<span class="string">"utf-8"</span>) +  <span class="string">" picture."</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>y = 1. It&#39;s a cat picture.
-</code></pre><img src="/2017/12/07/Class-1-Week-4-assignment4-2/output_7_1.png">
+</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_7_1.png" alt=""></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Explore your dataset </span></span><br><span class="line">m_train = train_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px = train_x_orig.shape[<span class="number">1</span>]</span><br><span class="line">m_test = test_x_orig.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Number of training examples: "</span> + str(m_train))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Number of testing examples: "</span> + str(m_test))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Each image is of size: ("</span> + str(num_px) + <span class="string">", "</span> + str(num_px) + <span class="string">", 3)"</span>)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"train_x_orig shape: "</span> + str(train_x_orig.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"train_y shape: "</span> + str(train_y.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"test_x_orig shape: "</span> + str(test_x_orig.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"test_y shape: "</span> + str(test_y.shape))</span><br></pre></td></tr></table></figure>
 <pre><code>Number of training examples: 209
 Number of testing examples: 50
@@ -442,7 +442,7 @@ train_y shape: (1, 209)
 test_x_orig shape: (50, 64, 64, 3)
 test_y shape: (1, 50)
 </code></pre><p>As usual, you reshape and standardize the images before feeding them to the network. The code is given in the cell below.</p>
-<img src="/2017/12/07/Class-1-Week-4-assignment4-2/imvectorkiank.png">
+<p><img src="http://p15k33cxk.bkt.clouddn.com/image/imvectorkiank.png" alt=""></p>
 <caption><center> <u>Figure 1</u>: Image to vector conversion. <br> </center></caption>
 
 
@@ -458,7 +458,7 @@ test_x&#39;s shape: (12288, 50)
 </ul>
 <p>You will then compare the performance of these models, and also try out different values for $L$. </p>
 <p>Let’s look at the two architectures.</p>
-<h3 id="3-1-2-layer-neural-network"><a href="#3-1-2-layer-neural-network" class="headerlink" title="3.1 - 2-layer neural network"></a>3.1 - 2-layer neural network</h3><img src="/2017/12/07/Class-1-Week-4-assignment4-2/2layerNN_kiank.png">
+<h3 id="3-1-2-layer-neural-network"><a href="#3-1-2-layer-neural-network" class="headerlink" title="3.1 - 2-layer neural network"></a>3.1 - 2-layer neural network</h3><p><img src="http://p15k33cxk.bkt.clouddn.com/image/2layerNN_kiank.png" alt=""></p>
 <caption><center> <u>Figure 2</u>: 2-layer neural network. <br> The model can be summarized as: <b><i>INPUT -> LINEAR -> RELU -> LINEAR -> SIGMOID -> OUTPUT</i></b>. </center></caption>
 
 <p><u>Detailed Architecture of figure 2</u>:</p>
@@ -471,7 +471,7 @@ test_x&#39;s shape: (12288, 50)
 <li>Finally, you take the sigmoid of the result. If it is greater than 0.5, you classify it to be a cat.</li>
 </ul>
 <h3 id="3-2-L-layer-deep-neural-network"><a href="#3-2-L-layer-deep-neural-network" class="headerlink" title="3.2 - L-layer deep neural network"></a>3.2 - L-layer deep neural network</h3><p>It is hard to represent an L-layer deep neural network with the above representation. However, here is a simplified network representation:</p>
-<img src="/2017/12/07/Class-1-Week-4-assignment4-2/LlayerNN_kiank.png">
+<p><img src="http://p15k33cxk.bkt.clouddn.com/image/LlayerNN_kiank.png" alt=""></p>
 <caption><center> <u>Figure 3</u>: L-layer neural network. <br> The model can be summarized as: <b><i>[LINEAR -> RELU] $\times$ (L-1) -> LINEAR -> SIGMOID</i></b></center></caption>
 
 <p><u>Detailed Architecture of figure 3</u>:</p>
@@ -520,7 +520,7 @@ Cost after iteration 2100: 0.06630748132267934
 Cost after iteration 2200: 0.059193295010381744
 Cost after iteration 2300: 0.053361403485605606
 Cost after iteration 2400: 0.04855478562877019
-</code></pre><img src="/2017/12/07/Class-1-Week-4-assignment4-2/output_18_1.png">
+</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_18_1.png" alt=""></p>
 <p><strong>Expected Output</strong>:</p>
 <table> 
     <tr>
@@ -597,7 +597,7 @@ Cost after iteration 2100: 0.107839
 Cost after iteration 2200: 0.102855
 Cost after iteration 2300: 0.100897
 Cost after iteration 2400: 0.092878
-</code></pre><img src="/2017/12/07/Class-1-Week-4-assignment4-2/output_30_1.png">
+</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_30_1.png" alt=""></p>
 <p><strong>Expected Output</strong>:</p>
 <table> 
     <tr>
@@ -648,7 +648,7 @@ Cost after iteration 2400: 0.092878
 <p>Though in the next course on “Improving deep neural networks” you will learn how to obtain even higher accuracy by systematically searching for better hyperparameters (learning_rate, layers_dims, num_iterations, and others you’ll also learn in the next course). </p>
 <h2 id="6-Results-Analysis"><a href="#6-Results-Analysis" class="headerlink" title="6) Results Analysis"></a>6) Results Analysis</h2><p>First, let’s take a look at some images the L-layer model labeled incorrectly. This will show a few mislabeled images. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_mislabeled_images(classes, test_x, test_y, pred_test)</span><br></pre></td></tr></table></figure>
-<img src="/2017/12/07/Class-1-Week-4-assignment4-2/output_38_0.png">
+<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_38_0.png" alt=""></p>
 <p><strong>A few type of images the model tends to do poorly on include:</strong> </p>
 <ul>
 <li>Cat body in an unusual position</li>
@@ -780,7 +780,7 @@ Cost after iteration 2400: 0.092878
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/avatar_xl.jpg"
+                src="http://p15k33cxk.bkt.clouddn.com/image/avatar_xl.jpg"
                 alt="Obser" />
             
               <p class="site-author-name" itemprop="name">Obser</p>
@@ -885,7 +885,8 @@ Cost after iteration 2400: 0.092878
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -895,15 +896,9 @@ Cost after iteration 2400: 0.092878
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
 
 
 
