@@ -89,9 +89,9 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/happy-house.jpg">
 <meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/house-members.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/output_20_1.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_23_0.svg">
-<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/output_20_1.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/output_23_0.svg">
+<meta property="og:updated_time" content="2020-09-21T12:28:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 2 Keras Tutorial Happy House">
 <meta name="twitter:description" content="Keras tutorial - the Happy HouseWelcome to the first assignment of week 2. In this assignment, you will:  Learn to use Keras, a high-level neural networks API (programming framework), written in Pytho">
@@ -539,7 +539,7 @@ Test Accuracy = 0.973333337307
 </code></pre><p>The training/test sets were quite similar; for example, all the pictures were taken against the same background (since a front door camera is always mounted in the same position). This makes the problem easier, but a model trained on this data may or may not work on your own data. But feel free to give it a try! </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">img_path = <span class="string">'images/my_image.jpg'</span></span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line">img = image.load_img(img_path, target_size=(<span class="number">64</span>, <span class="number">64</span>))</span><br><span class="line">imshow(img)</span><br><span class="line"></span><br><span class="line">x = image.img_to_array(img)</span><br><span class="line">x = np.expand_dims(x, axis=<span class="number">0</span>)</span><br><span class="line">x = preprocess_input(x)</span><br><span class="line"></span><br><span class="line">print(happyModel.predict(x))</span><br></pre></td></tr></table></figure>
 <pre><code>[[ 1.]]
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/output_20_1.png" alt="png"></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/output_20_1.png" alt="aliyun-obser"></p>
 <h2 id="5-Other-useful-functions-in-Keras-Optional"><a href="#5-Other-useful-functions-in-Keras-Optional" class="headerlink" title="5 - Other useful functions in Keras (Optional)"></a>5 - Other useful functions in Keras (Optional)</h2><p>Two other basic features of Keras that you’ll find useful are:</p>
 <ul>
 <li><code>model.summary()</code>: prints the details of your layers in a table with the sizes of its inputs/outputs</li>
@@ -591,7 +591,7 @@ Trainable params: 8,193
 Non-trainable params: 112
 _________________________________________________________________
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_model(happyModel, to_file=<span class="string">'HappyModel.png'</span>)</span><br><span class="line">SVG(model_to_dot(happyModel).create(prog=<span class="string">'dot'</span>, format=<span class="string">'svg'</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_23_0.svg" alt="svg"></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Keras-Tutorial-Happy-House/output_23_0.svg" alt="aliyun-obser"></p>
 
       
     </div>
