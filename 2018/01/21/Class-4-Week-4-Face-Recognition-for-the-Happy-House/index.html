@@ -87,18 +87,18 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Face Recognition for the Happy HouseWelcome to the first assignment of week 4! Here you will build a face recognition system. Many of the ideas presented here are from FaceNet. In lecture, we also tal">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/pixel_comparison.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/distance_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/triplet_comparison.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/f_x.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/distance_matrix.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/camera_0.jpg">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/camera_2.jpg">
-<meta property="og:updated_time" content="2018-01-21T13:05:00.000Z">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/pixel_comparison.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/distance_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/triplet_comparison.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/f_x.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/distance_matrix.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/camera_0.jpg">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/camera_2.jpg">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 4 Face Recognition for the Happy House">
 <meta name="twitter:description" content="Face Recognition for the Happy HouseWelcome to the first assignment of week 4! Here you will build a face recognition system. Many of the ideas presented here are from FaceNet. In lecture, we also tal">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/pixel_comparison.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/pixel_comparison.png">
 
 
 
@@ -422,7 +422,7 @@
 <p>Let’s load the required packages. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D, ZeroPadding2D, Activation, Input, concatenate</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"><span class="keyword">from</span> keras.layers.normalization <span class="keyword">import</span> BatchNormalization</span><br><span class="line"><span class="keyword">from</span> keras.layers.pooling <span class="keyword">import</span> MaxPooling2D, AveragePooling2D</span><br><span class="line"><span class="keyword">from</span> keras.layers.merge <span class="keyword">import</span> Concatenate</span><br><span class="line"><span class="keyword">from</span> keras.layers.core <span class="keyword">import</span> Lambda, Flatten, Dense</span><br><span class="line"><span class="keyword">from</span> keras.initializers <span class="keyword">import</span> glorot_uniform</span><br><span class="line"><span class="keyword">from</span> keras.engine.topology <span class="keyword">import</span> Layer</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line">K.set_image_data_format(<span class="string">'channels_first'</span>)</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> genfromtxt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> fr_utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> inception_blocks_v2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line">%load_ext autoreload</span><br><span class="line">%autoreload <span class="number">2</span></span><br><span class="line"></span><br><span class="line">np.set_printoptions(threshold=np.nan)</span><br></pre></td></tr></table></figure>
 <h2 id="0-Naive-Face-Verification"><a href="#0-Naive-Face-Verification" class="headerlink" title="0 - Naive Face Verification"></a>0 - Naive Face Verification</h2><p>In Face Verification, you’re given two images and you have to tell if they are of the same person. The simplest way to do this is to compare the two images pixel-by-pixel. If the distance between the raw images are less than a chosen threshold, it may be the same person! </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/pixel_comparison.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/pixel_comparison.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 1</b> </font></u></center></caption>
 
 <p>Of course, this algorithm performs really poorly, since the pixel values change dramatically due to variations in lighting, orientation of the person’s face, even minor changes in head position, and so on. </p>
@@ -446,7 +446,7 @@ Total Params: 3743280
 
 
 <p>By using a 128-neuron fully connected layer as its last layer, the model ensures that the output is an encoding vector of size 128. You then use the encodings the compare two face images as follows:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/distance_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/distance_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 2</b>: <br> </font></u> <font color="purple"> By computing a distance between two encodings and thresholding, you can determine if the two pictures represent the same person</font></center></caption>
 
 <p>So, an encoding is a good one if: </p>
@@ -455,14 +455,14 @@ Total Params: 3743280
 <li>The encodings of two images of different persons are very different</li>
 </ul>
 <p>The triplet loss function formalizes this, and tries to “push” the encodings of two images of the same person (Anchor and Positive) closer together, while “pulling” the encodings of two images of different persons (Anchor, Negative) further apart. </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/triplet_comparison.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/triplet_comparison.png" alt="aliyun-obser"></p>
 <p><br></p>
 <caption><center> <u> <font color="purple"> <b>Figure 3</b>: <br> </font></u> <font color="purple"> In the next part, we will call the pictures from left to right: Anchor (A), Positive (P), Negative (N)  </font></center></caption>
 
 
 
 <h3 id="1-2-The-Triplet-Loss"><a href="#1-2-The-Triplet-Loss" class="headerlink" title="1.2 - The Triplet Loss"></a>1.2 - The Triplet Loss</h3><p>For an image $x$, we denote its encoding $f(x)$, where $f$ is the function computed by the neural network.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/f_x.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/f_x.png" alt="aliyun-obser"></p>
 <!--
 We will also add a normalization step at the end of our model so that $\mid \mid f(x) \mid \mid_2 = 1$ (means the vector of encoding should be of norm 1).
 !-->
@@ -510,7 +510,7 @@ We will also add a normalization step at the end of our model so that $\mid \mid
 <h2 id="2-Loading-the-trained-model"><a href="#2-Loading-the-trained-model" class="headerlink" title="2 - Loading the trained model"></a>2 - Loading the trained model</h2><p>FaceNet is trained by minimizing the triplet loss. But since training requires a lot of data and a lot of computation, we won’t train it from scratch here. Instead, we load a previously trained model. Load a model using the following cell; this might take a couple of minutes to run. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FRmodel.compile(optimizer = <span class="string">'adam'</span>, loss = triplet_loss, metrics = [<span class="string">'accuracy'</span>])</span><br><span class="line">load_weights_from_FaceNet(FRmodel)</span><br></pre></td></tr></table></figure>
 <p>Here’re some examples of distances between the encodings between three individuals:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/distance_matrix.png" alt=""><br><br></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/distance_matrix.png" alt="aliyun-obser"><br><br></p>
 <caption><center> <u> <font color="purple"> <b>Figure 4</b>:</font></u> <br>  <font color="purple"> Example of distance outputs between three individuals' encodings</font></center></caption>
 
 <p>Let’s now use this model to perform face verification and face recognition! </p>
@@ -530,7 +530,7 @@ We will also add a normalization step at the end of our model so that $\mid \mid
 <p>As presented above, you should use the L2 distance (np.linalg.norm). (Note: In this implementation, compare the L2 distance, not the square of the L2 distance, to the threshold 0.7.) </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: verify</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify</span><span class="params">(image_path, identity, database, model)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Function that verifies if the person on the "image_path" image is "identity".</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    image_path -- path to an image</span></span><br><span class="line"><span class="string">    identity -- string, name of the person you'd like to verify the identity. Has to be a resident of the Happy house.</span></span><br><span class="line"><span class="string">    database -- python dictionary mapping names of allowed people's names (strings) to their encodings (vectors).</span></span><br><span class="line"><span class="string">    model -- your Inception model instance in Keras</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    dist -- distance between the image_path and the image of "identity" in the database.</span></span><br><span class="line"><span class="string">    door_open -- True, if the door should open. False otherwise.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Step 1: Compute the encoding for the image. Use img_to_encoding() see example above. (≈ 1 line)</span></span><br><span class="line">    encoding = img_to_encoding(image_path, model)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Step 2: Compute distance with identity's image (≈ 1 line)</span></span><br><span class="line">    dist = np.linalg.norm(encoding - database[identity])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Step 3: Open the door if dist &lt; 0.7, else don't open (≈ 3 lines)</span></span><br><span class="line">    <span class="keyword">if</span> dist &lt; <span class="number">0.7</span>:</span><br><span class="line">        print(<span class="string">"It's "</span> + str(identity) + <span class="string">", welcome home!"</span>)</span><br><span class="line">        door_open = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"It's not "</span> + str(identity) + <span class="string">", please go away"</span>)</span><br><span class="line">        door_open = <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> dist, door_open</span><br></pre></td></tr></table></figure>
 <p>Younes is trying to enter the Happy House and the camera takes a picture of him (“images/camera_0.jpg”). Let’s run your verification algorithm on this picture:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/camera_0.jpg" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/camera_0.jpg" alt="aliyun-obser"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verify(<span class="string">"images/camera_0.jpg"</span>, <span class="string">"younes"</span>, database, FRmodel)</span><br></pre></td></tr></table></figure>
 <pre><code>It&#39;s younes, welcome home!
 
@@ -553,7 +553,7 @@ We will also add a normalization step at the end of our model so that $\mid \mid
 </table>
 
 <p>Benoit, who broke the aquarium last weekend, has been banned from the house and removed from the database. He stole Kian’s ID card and came back to the house to try to present himself as Kian. The front-door camera took a picture of Benoit (“images/camera_2.jpg). Let’s run the verification algorithm to check if benoit can enter.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/camera_2.jpg" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Face-Recognition-for-the-Happy-House/camera_2.jpg" alt="aliyun-obser"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verify(<span class="string">"images/camera_2.jpg"</span>, <span class="string">"kian"</span>, database, FRmodel)</span><br></pre></td></tr></table></figure>
 <pre><code>It&#39;s not kian, please go away
 
@@ -869,7 +869,7 @@ We will also add a normalization step at the end of our model so that $\mid \mid
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

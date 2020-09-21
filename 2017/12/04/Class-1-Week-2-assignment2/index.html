@@ -87,16 +87,16 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Logistic Regression with a Neural Network mindsetWelcome to your first (required) programming assignment! You will build a logistic regression classifier to recognize  cats. This assignment will step">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_6_1.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/LogReg_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_44_1.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_46_0.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_50_1.png">
-<meta property="og:updated_time" content="2017-12-18T10:56:49.000Z">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_6_1.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/LogReg_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_44_1.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_46_0.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_50_1.png">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 1 Week 2 assignment2_2">
 <meta name="twitter:description" content="Logistic Regression with a Neural Network mindsetWelcome to your first (required) programming assignment! You will build a logistic regression classifier to recognize  cats. This assignment will step">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_6_1.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_6_1.png">
 
 
 
@@ -437,7 +437,7 @@
 <p>Each line of your train_set_x_orig and test_set_x_orig is an array representing an image. You can visualize an example by running the following code. Feel free also to change the <code>index</code> value and re-run to see other images. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of a picture</span></span><br><span class="line">index = <span class="number">5</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(train_set_y[:, index]) + <span class="string">", it's a '"</span> + classes[np.squeeze(train_set_y[:, index])].decode(<span class="string">"utf-8"</span>) +  <span class="string">"' picture."</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>y = [0], it&#39;s a &#39;non-cat&#39; picture.
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_6_1.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_6_1.png" alt="aliyun-obser"></p>
 <p>Many software bugs in deep learning come from having matrix/vector dimensions that don’t fit. If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs. </p>
 <p><strong>Exercise:</strong> Find the values for:</p>
 <pre><code>- m_train (number of training examples)
@@ -522,7 +522,7 @@ sanity check after reshaping: [17 31 56 22 33]
 </ul>
 <h2 id="3-General-Architecture-of-the-learning-algorithm"><a href="#3-General-Architecture-of-the-learning-algorithm" class="headerlink" title="3 - General Architecture of the learning algorithm"></a>3 - General Architecture of the learning algorithm</h2><p>It’s time to design a simple algorithm to distinguish cat images from non-cat images.</p>
 <p>You will build a Logistic Regression, using a Neural Network mindset. The following Figure explains why <strong>Logistic Regression is actually a very simple Neural Network!</strong></p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/LogReg_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/LogReg_kiank.png" alt="aliyun-obser"></p>
 <p><strong>Mathematical expression of the algorithm</strong>:</p>
 <p>For one example \(x^{(i)}\):</p>
 <script type="math/tex; mode=display">z^{(i)} = w^T x^{(i)} + b \tag{1}</script><script type="math/tex; mode=display">\hat{y}^{(i)} = a^{(i)} = sigmoid(z^{(i)})\tag{2}</script><script type="math/tex; mode=display">\mathcal{L}(a^{(i)}, y^{(i)}) =  - y^{(i)}  \log(a^{(i)}) - (1-y^{(i)} )  \log(1-a^{(i)})\tag{3}</script><p>The cost is then computed by summing over all training examples:</p>
@@ -729,10 +729,10 @@ test accuracy: 70.0 %
 <p>Also, you see that the model is clearly overfitting the training data. Later in this specialization you will learn how to reduce overfitting, for example by using regularization. Using the code below (and changing the <code>index</code> variable) you can look at predictions on pictures of the test set.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of a picture that was wrongly classified.</span></span><br><span class="line">index = <span class="number">1</span></span><br><span class="line">plt.imshow(test_set_x[:,index].reshape((num_px, num_px, <span class="number">3</span>)))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(test_set_y[<span class="number">0</span>,index]) + <span class="string">", you predicted that it is a \""</span> + classes[int(d[<span class="string">"Y_prediction_test"</span>][<span class="number">0</span>,index])].decode(<span class="string">"utf-8"</span>) +  <span class="string">"\" picture."</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>y = 1, you predicted that it is a &quot;cat&quot; picture.
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_44_1.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_44_1.png" alt="aliyun-obser"></p>
 <p>Let’s also plot the cost function and the gradients.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Plot learning curve (with costs)</span></span><br><span class="line">costs = np.squeeze(d[<span class="string">'costs'</span>])</span><br><span class="line">plt.plot(costs)</span><br><span class="line">plt.ylabel(<span class="string">'cost'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'iterations (per hundreds)'</span>)</span><br><span class="line">plt.title(<span class="string">"Learning rate ="</span> + str(d[<span class="string">"learning_rate"</span>]))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_46_0.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_46_0.png" alt="aliyun-obser"></p>
 <p><strong>Interpretation</strong>:<br>You can see the cost decreasing. It shows that the parameters are being learned. However, you see that you could train the model even more on the training set. Try to increase the number of iterations in the cell above and rerun the cells. You might see that the training set accuracy goes up, but the test set accuracy goes down. This is called overfitting. </p>
 <h2 id="6-Further-analysis-optional-ungraded-exercise"><a href="#6-Further-analysis-optional-ungraded-exercise" class="headerlink" title="6 - Further analysis (optional/ungraded exercise)"></a>6 - Further analysis (optional/ungraded exercise)</h2><p>Congratulations on building your first image classification model. Let’s analyze it further, and examine possible choices for the learning rate \(\alpha\). </p>
 <h4 id="Choice-of-learning-rate"><a href="#Choice-of-learning-rate" class="headerlink" title="Choice of learning rate"></a>Choice of learning rate</h4><p><strong>Reminder</strong>:<br>In order for Gradient Descent to work you must choose the learning rate wisely. The learning rate \(\alpha\)  determines how rapidly we update the parameters. If the learning rate is too large we may “overshoot” the optimal value. Similarly, if it is too small we will need too many iterations to converge to the best values. That’s why it is crucial to use a well-tuned learning rate.</p>
@@ -755,7 +755,7 @@ train accuracy: 68.42105263157895 %
 test accuracy: 36.0 %
 
 -------------------------------------------------------
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_50_1.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-1-Week-2-assignment2/output_50_1.png" alt="aliyun-obser"></p>
 <p><strong>Interpretation</strong>: </p>
 <ul>
 <li>Different learning rates give different costs and thus different predictions results.</li>
@@ -1010,7 +1010,7 @@ test accuracy: 36.0 %
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

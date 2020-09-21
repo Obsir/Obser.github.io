@@ -88,17 +88,17 @@
 <meta property="og:description" content="Autonomous driving - Car detectionWelcome to your week 3 programming assignment. You will learn about object detection using the very powerful YOLO model. Many of the ideas in this notebook are descri">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/driveai.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/box_label.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/architecture.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/flatten.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/probability_extraction.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/proba_map.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/anchor_map.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/non-max-suppression.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/iou.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/box_label.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/architecture.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/flatten.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/probability_extraction.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/proba_map.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/anchor_map.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/non-max-suppression.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/iou.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_47_2.png">
 <meta property="og:image" content="https://i.creativecommons.org/l/by/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-01-19T17:43:38.000Z">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 3 Autonomous driving application Car detection">
 <meta name="twitter:description" content="Autonomous driving - Car detectionWelcome to your week 3 programming assignment. You will learn about object detection using the very powerful YOLO model. Many of the ideas in this notebook are descri">
@@ -429,7 +429,7 @@
 
 <p><img src="http://p15k33cxk.bkt.clouddn.com/image/driveai.png" style="width:100px;height:100;"></p>
 <p>You’ve gathered all these images into a folder and have labelled them by drawing bounding boxes around every car you found. Here’s an example of what your bounding boxes look like.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/box_label.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/box_label.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 1</b> </u>: <b>Definition of a box</b><br> </center></caption>
 
 <p>If you have 80 classes that you want YOLO to recognize, you can represent the class label $c$ either as an integer from 1 to 80, or as an 80-dimensional vector (with 80 numbers) one component of which is 1 and the rest of which are 0. The video lectures had used the latter representation; in this notebook, we will use both representations, depending on which is more convenient for a particular step.  </p>
@@ -442,17 +442,17 @@
 </ul>
 <p>We will use 5 anchor boxes. So you can think of the YOLO architecture as the following: IMAGE (m, 608, 608, 3) -&gt; DEEP CNN -&gt; ENCODING (m, 19, 19, 5, 85).</p>
 <p>Lets look in greater detail at what this encoding represents. </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/architecture.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/architecture.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 2</b> </u>: <b>Encoding architecture for YOLO</b><br> </center></caption>
 
 <p>If the center/midpoint of an object falls into a grid cell, that grid cell is responsible for detecting that object.</p>
 <p>Since we are using 5 anchor boxes, each of the 19 x19 cells thus encodes information about 5 boxes. Anchor boxes are defined only by their width and height.</p>
 <p>For simplicity, we will flatten the last two last dimensions of the shape (19, 19, 5, 85) encoding. So the output of the Deep CNN is (19, 19, 425).</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/flatten.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/flatten.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 3</b> </u>: <b>Flattening the last two last dimensions</b><br> </center></caption>
 
 <p>Now, for each box (of each cell) we will compute the following elementwise product and extract a probability that the box contains a certain class.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/probability_extraction.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/probability_extraction.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 4</b> </u>: <b>Find the class detected by each box</b><br> </center></caption>
 
 <p>Here’s one way to visualize what YOLO is predicting on an image:</p>
@@ -461,12 +461,12 @@
 <li>Color that grid cell according to what object that grid cell considers the most likely.</li>
 </ul>
 <p>Doing this results in this picture: </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/proba_map.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/proba_map.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 5</b> </u>: Each of the 19x19 grid cells colored according to which class has the largest predicted probability in that cell.<br> </center></caption>
 
 <p>Note that this visualization isn’t a core part of the YOLO algorithm itself for making predictions; it’s just a nice way of visualizing an intermediate result of the algorithm. </p>
 <p>Another way to visualize YOLO’s output is to plot the bounding boxes that it outputs. Doing that results in a visualization like this:  </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/anchor_map.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/anchor_map.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 6</b> </u>: Each cell gives you 5 boxes. In total, the model predicts: 19x19x5 = 1805 boxes just by looking once at the image (one forward pass through the network)! Different colors denote different classes. <br> </center></caption>
 
 <p>In the figure above, we plotted only boxes that the model had assigned a high probability to, but this is still too many boxes. You’d like to filter the algorithm’s output down to a much smaller number of detected objects. To do so, you’ll use non-max suppression. Specifically, you’ll carry out these steps: </p>
@@ -560,11 +560,11 @@ classes.shape = (?,)
 </table>
 
 <h3 id="2-3-Non-max-suppression"><a href="#2-3-Non-max-suppression" class="headerlink" title="2.3 - Non-max suppression"></a>2.3 - Non-max suppression</h3><p>Even after filtering by thresholding over the classes scores, you still end up a lot of overlapping boxes. A second filter for selecting the right boxes is called non-maximum suppression (NMS). </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/non-max-suppression.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/non-max-suppression.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 7</b> </u>: In this example, the model has predicted 3 cars, but it's actually 3 predictions of the same car. Running non-max suppression (NMS) will select only the most accurate (highest probabiliy) one of the 3 boxes. <br> </center></caption>
 
 
-<p>Non-max suppression uses the very important function called <strong>“Intersection over Union”</strong>, or IoU.<br><img src="http://p15k33cxk.bkt.clouddn.com/image/iou.png" alt=""></p>
+<p>Non-max suppression uses the very important function called <strong>“Intersection over Union”</strong>, or IoU.<br><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-3-Autonomous-driving-application-Car-detection/iou.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 8</b> </u>: Definition of "Intersection over Union". <br> </center></caption>
 
 <p><strong>Exercise</strong>: Implement iou(). Some hints:</p>
@@ -1291,7 +1291,7 @@ car 0.89 (367, 300) (745, 648)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

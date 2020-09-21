@@ -87,19 +87,19 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="RegularizationWelcome to the second assignment of this week. Deep Learning models have so much flexibility and capacity that overfitting can be a serious problem, if the training dataset is not big en">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/field_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_3_0.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_9_1.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_11_0.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_22_1.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_24_0.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_35_3.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_37_0.png">
-<meta property="og:updated_time" content="2017-12-18T11:09:12.000Z">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/field_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_3_0.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_9_1.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_11_0.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_22_1.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_24_0.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_35_3.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_37_0.png">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 2 Week 1 2.Regularization">
 <meta name="twitter:description" content="RegularizationWelcome to the second assignment of this week. Deep Learning models have so much flexibility and capacity that overfitting can be a serious problem, if the training dataset is not big en">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/field_kiank.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/field_kiank.png">
 
 
 
@@ -411,13 +411,13 @@
 <p>Let’s first import the packages you are going to use.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import packages</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> reg_utils <span class="keyword">import</span> sigmoid, relu, plot_decision_boundary, initialize_parameters, load_2D_dataset, predict_dec</span><br><span class="line"><span class="keyword">from</span> reg_utils <span class="keyword">import</span> compute_cost, predict, forward_propagation, backward_propagation, update_parameters</span><br><span class="line"><span class="keyword">import</span> sklearn</span><br><span class="line"><span class="keyword">import</span> sklearn.datasets</span><br><span class="line"><span class="keyword">import</span> scipy.io</span><br><span class="line"><span class="keyword">from</span> testCases <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">7.0</span>, <span class="number">4.0</span>) <span class="comment"># set default size of plots</span></span><br><span class="line">plt.rcParams[<span class="string">'image.interpolation'</span>] = <span class="string">'nearest'</span></span><br><span class="line">plt.rcParams[<span class="string">'image.cmap'</span>] = <span class="string">'gray'</span></span><br></pre></td></tr></table></figure>
 <p><strong>Problem Statement</strong>: You have just been hired as an AI expert by the French Football Corporation. They would like you to recommend positions where France’s goal keeper should kick the ball so that the French team’s players can then hit it with their head. </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/field_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/field_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <b>Figure 1</b> </u>: <b>Football field</b><br> The goal keeper kicks the ball in the air, the players of each team are fighting to hit the ball with their head </center></caption>
 
 
 <p>They give you the following 2D dataset from France’s past 10 games.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_X, train_Y, test_X, test_Y = load_2D_dataset()</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_3_0.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_3_0.png" alt="aliyun-obser"></p>
 <p>Each dot corresponds to a position on the football field where a football player has hit the ball with his/her head after the French goal keeper has shot the ball from the left side of the football field.</p>
 <ul>
 <li>If the dot is blue, it means the French player managed to hit the ball with his/her head</li>
@@ -443,14 +443,14 @@
 <pre><code>Cost after iteration 0: 0.6557412523481002
 Cost after iteration 10000: 0.163299875257242
 Cost after iteration 20000: 0.13851642423255234
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_9_1.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_9_1.png" alt="aliyun-obser"></p>
 <pre><code>On the training set:
 Accuracy: 0.947867298578
 On the test set:
 Accuracy: 0.915
 </code></pre><p>The train accuracy is 94.8% while the test accuracy is 91.5%. This is the <strong>baseline model</strong> (you will observe the impact of regularization on this model). Run the following code to plot the decision boundary of your model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">"Model without regularization"</span>)</span><br><span class="line">axes = plt.gca()</span><br><span class="line">axes.set_xlim([<span class="number">-0.75</span>,<span class="number">0.40</span>])</span><br><span class="line">axes.set_ylim([<span class="number">-0.75</span>,<span class="number">0.65</span>])</span><br><span class="line">plot_decision_boundary(<span class="keyword">lambda</span> x: predict_dec(parameters, x.T), train_X, train_Y)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_11_0.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_11_0.png" alt="aliyun-obser"></p>
 <p>The non-regularized model is obviously overfitting the training set. It is fitting the noisy points! Lets now look at two techniques to reduce overfitting.</p>
 <h2 id="2-L2-Regularization"><a href="#2-L2-Regularization" class="headerlink" title="2 - L2 Regularization"></a>2 - L2 Regularization</h2><p>The standard way to avoid overfitting is called <strong>L2 regularization</strong>. It consists of appropriately modifying your cost function, from:</p>
 <script type="math/tex; mode=display">J = -\frac{1}{m} \sum\limits_{i = 1}^{m} \large{(}\small  y^{(i)}\log\left(a^{[L](i)}\right) + (1-y^{(i)})\log\left(1- a^{[L](i)}\right) \large{)} \tag{1}</script><p>To:</p>
@@ -524,7 +524,7 @@ dW3 = [[-1.77691347 -0.11832879 -0.09397446]]
 <pre><code>Cost after iteration 0: 0.6974484493131264
 Cost after iteration 10000: 0.2684918873282239
 Cost after iteration 20000: 0.26809163371273015
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_22_1.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_22_1.png" alt="aliyun-obser"></p>
 <pre><code>On the train set:
 Accuracy: 0.938388625592
 On the test set:
@@ -532,7 +532,7 @@ Accuracy: 0.93
 </code></pre><p>Congrats, the test set accuracy increased to 93%. You have saved the French football team!</p>
 <p>You are not overfitting the training data anymore. Let’s plot the decision boundary.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">"Model with L2-regularization"</span>)</span><br><span class="line">axes = plt.gca()</span><br><span class="line">axes.set_xlim([<span class="number">-0.75</span>,<span class="number">0.40</span>])</span><br><span class="line">axes.set_ylim([<span class="number">-0.75</span>,<span class="number">0.65</span>])</span><br><span class="line">plot_decision_boundary(<span class="keyword">lambda</span> x: predict_dec(parameters, x.T), train_X, train_Y)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_24_0.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_24_0.png" alt="aliyun-obser"></p>
 <p><strong>Observations</strong>:</p>
 <ul>
 <li>The value of $\lambda$ is a hyperparameter that you can tune using a dev set.</li>
@@ -645,7 +645,7 @@ dA2 = [[ 0.58180856  0.         -0.00299679  0.         -0.27715731]
 <pre><code>Cost after iteration 0: 0.6543912405149825
 Cost after iteration 10000: 0.0610169865749056
 Cost after iteration 20000: 0.060582435798513114
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_35_3.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_35_3.png" alt="aliyun-obser"></p>
 <pre><code>On the train set:
 Accuracy: 0.928909952607
 On the test set:
@@ -653,7 +653,7 @@ Accuracy: 0.95
 </code></pre><p>Dropout works great! The test accuracy has increased again (to 95%)! Your model is not overfitting the training set and does a great job on the test set. The French football team will be forever grateful to you! </p>
 <p>Run the code below to plot the decision boundary.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">"Model with dropout"</span>)</span><br><span class="line">axes = plt.gca()</span><br><span class="line">axes.set_xlim([<span class="number">-0.75</span>,<span class="number">0.40</span>])</span><br><span class="line">axes.set_ylim([<span class="number">-0.75</span>,<span class="number">0.65</span>])</span><br><span class="line">plot_decision_boundary(<span class="keyword">lambda</span> x: predict_dec(parameters, x.T), train_X, train_Y)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_37_0.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-2-Week-1-2-Regularization/output_37_0.png" alt="aliyun-obser"></p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li>A <strong>common mistake</strong> when using dropout is to use it both in training and testing. You should use dropout (randomly eliminate nodes) only in training. </li>
@@ -953,7 +953,7 @@ Accuracy: 0.95
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

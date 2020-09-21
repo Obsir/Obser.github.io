@@ -87,19 +87,19 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Convolutional Neural Networks: Step by StepWelcome to Course 4’s first assignment! In this assignment, you will implement convolutional (CONV) and pooling (POOL) layers in numpy, including both forwar">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/model.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/conv_nn.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/PAD.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_7_2.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/Convolution_schematic.gif">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/vert_horiz_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/model.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/conv_nn.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/PAD.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/output_7_2.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/Convolution_schematic.gif">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/vert_horiz_kiank.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/max_pool1.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/a_pool.png">
-<meta property="og:updated_time" content="2018-01-17T11:26:04.000Z">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 1 Convolutional Neural Networks: Step by Step">
 <meta name="twitter:description" content="Convolutional Neural Networks: Step by StepWelcome to Course 4’s first assignment! In this assignment, you will implement convolutional (CONV) and pooling (POOL) layers in numpy, including both forwar">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/model.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/model.png">
 
 
 
@@ -456,13 +456,13 @@
 </li>
 </ul>
 <p>This notebook will ask you to implement these functions from scratch in <code>numpy</code>. In the next notebook, you will use the TensorFlow equivalents of these functions to build the following model:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/model.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/model.png" alt="aliyun-obser"></p>
 <p><strong>Note</strong> that for every forward function, there is its corresponding backward equivalent. Hence, at every step of your forward module you will store some parameters in a cache. These parameters are used to compute gradients during backpropagation. </p>
 <h2 id="3-Convolutional-Neural-Networks"><a href="#3-Convolutional-Neural-Networks" class="headerlink" title="3 - Convolutional Neural Networks"></a>3 - Convolutional Neural Networks</h2><p>Although programming frameworks make convolutions easy to use, they remain one of the hardest concepts to understand in Deep Learning. A convolution layer transforms an input volume into an output volume of different size, as shown below. </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/conv_nn.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/conv_nn.png" alt="aliyun-obser"></p>
 <p>In this part, you will build every step of the convolution layer. You will first implement two helper functions: one for zero padding and the other for computing the convolution function itself. </p>
 <h3 id="3-1-Zero-Padding"><a href="#3-1-Zero-Padding" class="headerlink" title="3.1 - Zero-Padding"></a>3.1 - Zero-Padding</h3><p>Zero-padding adds zeros around the border of an image:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/PAD.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/PAD.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 1</b> </font></u><font color="purple">  : <b>Zero-Padding</b><br> Image (3 channels, RGB) with a padding of 2. </font></center></caption>
 
 <p>The main benefits of padding are the following:</p>
@@ -493,7 +493,7 @@ x_pad[1,1] = [[ 0.  0.]
 
 
 &lt;matplotlib.image.AxesImage at 0x10c4e3ac8&gt;
-</code></pre><p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_7_2.png" alt=""></p>
+</code></pre><p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/output_7_2.png" alt="aliyun-obser"></p>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -545,7 +545,7 @@ x_pad[1,1] = [[ 0.  0.]
 <li>Applies a filter at every position of the input</li>
 <li>Outputs another volume (usually of different size)</li>
 </ul>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/Convolution_schematic.gif" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/Convolution_schematic.gif" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 2</b> </font></u><font color="purple">  : <b>Convolution operation</b><br> with a filter of 2x2 and a stride of 1 (stride = amount you move the window each time you slide) </font></center></caption>
 
 <p>In a computer vision application, each value in the matrix on the left corresponds to a single pixel value, and we convolve a 3x3 filter with the image by multiplying its values element-wise with the original matrix, then summing them up. In this first step of the exercise, you will implement a single step of convolution, corresponding to applying a filter to just one of the positions to get a single real-valued output. </p>
@@ -583,7 +583,7 @@ x_pad[1,1] = [[ 0.  0.]
 <ol>
 <li>To define a_slice you will need to first define its corners <code>vert_start</code>, <code>vert_end</code>, <code>horiz_start</code> and <code>horiz_end</code>. This figure may be helpful for you to find how each of the corner can be defined using h, w, f and s in the code below.</li>
 </ol>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/vert_horiz_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-1-Convolutional-Neural-Networks-Step-by-Step/vert_horiz_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 3</b> </font></u><font color="purple">  : <b>Definition of a slice using vertical and horizontal start/end (with a 2x2 filter)</b> <br> This figure shows only a single channel.  </font></center></caption>
 
 
@@ -1119,7 +1119,7 @@ dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

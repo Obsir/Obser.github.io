@@ -87,21 +87,21 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Deep Learning &amp;amp; Art: Neural Style TransferWelcome to the second assignment of this week. In this assignment, you will learn about Neural Style Transfer. This algorithm was created by Gatys et al.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/louvre_generated.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/louvre_generated.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_7_2_NTS.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/NST_LOSS.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/NST_LOSS.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_14_2.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/NST_GM.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_noise.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/louvre_generated.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/perspolis_vangogh.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/pasargad_kashi.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/circle_abstract.png">
-<meta property="og:updated_time" content="2018-01-21T15:15:49.000Z">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/NST_GM.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/output_noise.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/louvre_generated.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/perspolis_vangogh.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/pasargad_kashi.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/circle_abstract.png">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 4 Art Generation with Neural Style Transfer">
 <meta name="twitter:description" content="Deep Learning &amp;amp; Art: Neural Style TransferWelcome to the second assignment of this week. In this assignment, you will learn about Neural Style Transfer. This algorithm was created by Gatys et al.">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/louvre_generated.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/louvre_generated.png">
 
 
 
@@ -417,7 +417,7 @@
 <a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> scipy.io</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> nst_utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 <h2 id="1-Problem-Statement"><a href="#1-Problem-Statement" class="headerlink" title="1 - Problem Statement"></a>1 - Problem Statement</h2><p>Neural Style Transfer (NST) is one of the most fun techniques in deep learning. As seen below, it merges two images, namely, a “content” image (C) and a “style” image (S), to create a “generated” image (G). The generated image G combines the “content” of the image C with the “style” of image S. </p>
-<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="http://p15k33cxk.bkt.clouddn.com/image/louvre_generated.png" alt=""></p>
+<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/louvre_generated.png" alt="aliyun-obser"></p>
 <p>Let’s see how you can do this. </p>
 <h2 id="2-Transfer-Learning"><a href="#2-Transfer-Learning" class="headerlink" title="2 - Transfer Learning"></a>2 - Transfer Learning</h2><p>Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that. The idea of using a network trained on a different task and applying it to a new task is called transfer learning. </p>
 <p>Following the original NST paper (<a href="https://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">https://arxiv.org/abs/1508.06576</a>), we will use the VGG network. Specifically, we’ll use VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and thus has learned to recognize a variety of low level features (at the earlier layers) and high level features (at the deeper layers). </p>
@@ -441,7 +441,7 @@
 <p>We would like the “generated” image G to have similar content as the input image C. Suppose you have chosen some layer’s activations to represent the content of an image. In practice, you’ll get the most visually pleasing results if you choose a layer in the middle of the network—neither too shallow nor too deep. (After you have finished this exercise, feel free to come back and experiment with using different layers, to see how the results vary.)</p>
 <p>So, suppose you have picked one particular hidden layer to use. Now, set the image C as the input to the pretrained VGG network, and run forward propagation. Let $a^{(C)}$ be the hidden layer activations in the layer you had chosen. (In lecture, we had written this as <script type="math/tex">a^{[l](C)}</script>, but here we’ll drop the superscript $[l]$ to simplify the notation.) This will be a $n_H \times n_W \times n_C$ tensor. Repeat this process with the image G: Set G as the input, and run forward progation. Let <script type="math/tex">a^{(G)}</script> be the corresponding hidden layer activation. We will define as the content cost function as:</p>
 <script type="math/tex; mode=display">J_{content}(C,G) =  \frac{1}{4 \times n_H \times n_W \times n_C}\sum _{ \text{all entries}} (a^{(C)} - a^{(G)})^2\tag{1}</script><p>Here, <script type="math/tex">n_H, n_W</script> and <script type="math/tex">n_C</script> are the height, width and number of channels of the hidden layer you have chosen, and appear in a normalization term in the cost. For clarity, note that <script type="math/tex">a^{(C)}</script> and <script type="math/tex">a^{(G)}</script> are the volumes corresponding to a hidden layer’s activations. In order to compute the cost <script type="math/tex">J_{content}(C,G)</script>, it might also be convenient to unroll these 3D volumes into a 2D matrix, as shown below. (Technically this unrolling step isn’t needed to compute <script type="math/tex">J_{content}</script>, but it will be good practice for when you do need to carry out a similar operation later for computing the style const <script type="math/tex">J_{style}</script>.)</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/NST_LOSS.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/NST_LOSS.png" alt="aliyun-obser"></p>
 <p><strong>Exercise:</strong> Compute the “content cost” using TensorFlow. </p>
 <p><strong>Instructions</strong>: The 3 steps to implement this function are:</p>
 <ol>
@@ -487,7 +487,7 @@
 <h3 id="3-2-1-Style-matrix"><a href="#3-2-1-Style-matrix" class="headerlink" title="3.2.1 - Style matrix"></a>3.2.1 - Style matrix</h3><p>The style matrix is also called a “Gram matrix.” In linear algebra, the Gram matrix G of a set of vectors <script type="math/tex">(v_{1},\dots ,v_{n})</script> is the matrix of dot products, whose entries are <script type="math/tex">{\displaystyle G_{ij} = v_{i}^T v_{j} = np.dot(v_{i}, v_{j})  }</script>. In other words, <script type="math/tex">G_{ij}</script> compares how similar <script type="math/tex">v_i</script> is to <script type="math/tex">v_j</script>: If they are highly similar, you would expect them to have a large dot product, and thus for <script type="math/tex">G_{ij}</script> to be large. </p>
 <p>Note that there is an unfortunate collision in the variable names used here. We are following common terminology used in the literature, but <script type="math/tex">G</script> is used to denote the Style matrix (or Gram matrix) as well as to denote the generated image <script type="math/tex">G</script>. We will try to make sure which <script type="math/tex">G</script> we are referring to is always clear from the context. </p>
 <p>In NST, you can compute the Style matrix by multiplying the “unrolled” filter matrix with their transpose:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/NST_GM.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/NST_GM.png" alt="aliyun-obser"></p>
 <p>The result is a matrix of dimension <script type="math/tex">(n_C,n_C)</script> where <script type="math/tex">n_C</script> is the number of filters. The value <script type="math/tex">G_{ij}</script> measures how similar the activations of filter <script type="math/tex">i</script> are to the activations of filter <script type="math/tex">j</script>. </p>
 <p>One important part of the gram matrix is that the diagonal elements such as <script type="math/tex">G_{ii}</script> also measures how active filter <script type="math/tex">i</script> is. For example, suppose filter $i$ is detecting vertical textures in the image. Then <script type="math/tex">G_{ii}</script> measures how common  vertical textures are in the image as a whole: If <script type="math/tex">G_{ii}</script> is large, this means that the image has a lot of vertical texture. </p>
 <p>By capturing the prevalence of different types of features (<script type="math/tex">G_{ii}</script>), as well as how much different features occur together (<script type="math/tex">G_{ij}</script>), the Style matrix <script type="math/tex">G</script> measures the style of an image. </p>
@@ -621,7 +621,7 @@ How do you choose the coefficients for each layer? The deeper layers capture hig
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">style_image = scipy.misc.imread(<span class="string">"images/monet.jpg"</span>)</span><br><span class="line">style_image = reshape_and_normalize_image(style_image)</span><br></pre></td></tr></table></figure>
 <p>Now, we initialize the “generated” image as a noisy image created from the content_image. By initializing the pixels of the generated image to be mostly noise but still slightly correlated with the content image, this will help the content of the “generated” image more rapidly match the content of the “content” image. (Feel free to look in <code>nst_utils.py</code> to see the details of <code>generate_noise_image(...)</code>; to do so, click “File—&gt;Open…” at the upper-left corner of this Jupyter notebook.)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">generated_image = generate_noise_image(content_image)</span><br><span class="line">imshow(generated_image[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/output_noise.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/output_noise.png" alt="aliyun-obser"></p>
 <p>Next, as explained in part (2), let’s load the VGG16 model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = load_vgg_model(<span class="string">"pretrained-model/imagenet-vgg-verydeep-19.mat"</span>)</span><br></pre></td></tr></table></figure>
 <p>To get the program to compute the content cost, we will now assign <code>a_C</code> and <code>a_G</code> to be the appropriate hidden layer activations. We will use layer <code>conv4_2</code> to compute the content cost. The code below does the following:</p>
@@ -752,21 +752,21 @@ array([[[[ -47.57871246,  -61.58271027,   48.85700226],
 
 <p>You’re done! After running this, in the upper bar of the notebook click on “File” and then “Open”. Go to the “/output” directory to see all the saved images. Open “generated_image” to see the generated image! :)</p>
 <p>You should see something the image presented below on the right:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/louvre_generated.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/louvre_generated.png" alt="aliyun-obser"></p>
 <p>We didn’t want you to wait too long to see an initial result, and so had set the hyperparameters accordingly. To get the best looking results, running the optimization algorithm longer (and perhaps with a smaller learning rate) might work better. After completing and submitting this assignment, we encourage you to come back and play more with this notebook, and see if you can generate even better looking images. </p>
 <p>Here are few other examples:</p>
 <ul>
 <li>The beautiful ruins of the ancient city of Persepolis (Iran) with the style of Van Gogh (The Starry Night)</li>
 </ul>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/perspolis_vangogh.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/perspolis_vangogh.png" alt="aliyun-obser"></p>
 <ul>
 <li>The tomb of Cyrus the great in Pasargadae with the style of a Ceramic Kashi from Ispahan.</li>
 </ul>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/pasargad_kashi.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/pasargad_kashi.png" alt="aliyun-obser"></p>
 <ul>
 <li>A scientific study of a turbulent fluid with the style of a abstract blue fluid painting.</li>
 </ul>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/circle_abstract.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-4-Art-Generation-with-Neural-Style-Transfer/circle_abstract.png" alt="aliyun-obser"></p>
 <h2 id="5-Test-with-your-own-image-Optional-Ungraded"><a href="#5-Test-with-your-own-image-Optional-Ungraded" class="headerlink" title="5 - Test with your own image (Optional/Ungraded)"></a>5 - Test with your own image (Optional/Ungraded)</h2><p>Finally, you can also rerun the algorithm on your own images! </p>
 <p>To do so, go back to part 4 and change the content image and style image with your own pictures. In detail, here’s what you should do:</p>
 <ol>
@@ -1037,7 +1037,7 @@ array([[[[ -47.57871246,  -61.58271027,   48.85700226],
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

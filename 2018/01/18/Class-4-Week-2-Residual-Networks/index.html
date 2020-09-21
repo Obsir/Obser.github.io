@@ -87,20 +87,20 @@
 <meta property="og:site_name" content="Observer">
 <meta property="og:description" content="Residual NetworksWelcome to the second assignment of this week! You will learn how to build very deep convolutional networks, using Residual Networks (ResNets). In theory, very deep networks can repre">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/vanishing_grad_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/skip_connection_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/idblock2_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/idblock3_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/convblock_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/resnet_kiank.png">
-<meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/signs_data_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/vanishing_grad_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/skip_connection_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/idblock2_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/idblock3_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/convblock_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/resnet_kiank.png">
+<meta property="og:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/signs_data_kiank.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_35_3_1.png">
 <meta property="og:image" content="http://p15k33cxk.bkt.clouddn.com/image/output_39_0.svg">
-<meta property="og:updated_time" content="2018-01-17T16:55:44.000Z">
+<meta property="og:updated_time" content="2020-09-21T12:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deeplearning.ai homework：Class 4 Week 2 Residual Networks">
 <meta name="twitter:description" content="Residual NetworksWelcome to the second assignment of this week! You will learn how to build very deep convolutional networks, using Residual Networks (ResNets). In theory, very deep networks can repre">
-<meta name="twitter:image" content="http://p15k33cxk.bkt.clouddn.com/image/vanishing_grad_kiank.png">
+<meta name="twitter:image" content="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/vanishing_grad_kiank.png">
 
 
 
@@ -419,24 +419,24 @@
 <h2 id="1-The-problem-of-very-deep-neural-networks"><a href="#1-The-problem-of-very-deep-neural-networks" class="headerlink" title="1 - The problem of very deep neural networks"></a>1 - The problem of very deep neural networks</h2><p>Last week, you built your first convolutional neural network. In recent years, neural networks have become deeper, with state-of-the-art networks going from just a few layers (e.g., AlexNet) to over a hundred layers.</p>
 <p>The main benefit of a very deep network is that it can represent very complex functions. It can also learn features at many different levels of abstraction, from edges (at the lower layers) to very complex features (at the deeper layers). However, using a deeper network doesn’t always help. A huge barrier to training them is vanishing gradients: very deep networks often have a gradient signal that goes to zero quickly, thus making gradient descent unbearably slow. More specifically, during gradient descent, as you backprop from the final layer back to the first layer, you are multiplying by the weight matrix on each step, and thus the gradient can decrease exponentially quickly to zero (or, in rare cases, grow exponentially quickly and “explode” to take very large values). </p>
 <p>During training, you might therefore see the magnitude (or norm) of the gradient for the earlier layers descrease to zero very rapidly as training proceeds: </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/vanishing_grad_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/vanishing_grad_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 1</b> </font></u><font color="purple">  : <b>Vanishing gradient</b> <br> The speed of learning decreases very rapidly for the early layers as the network trains </font></center></caption>
 
 <p>You are now going to solve this problem by building a Residual Network!</p>
 <h2 id="2-Building-a-Residual-Network"><a href="#2-Building-a-Residual-Network" class="headerlink" title="2 - Building a Residual Network"></a>2 - Building a Residual Network</h2><p>In ResNets, a “shortcut” or a “skip connection” allows the gradient to be directly backpropagated to earlier layers:  </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/skip_connection_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/skip_connection_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 2</b> </font></u><font color="purple">  : A ResNet block showing a <b>skip-connection</b> <br> </font></center></caption>
 
 <p>The image on the left shows the “main path” through the network. The image on the right adds a shortcut to the main path. By stacking these ResNet blocks on top of each other, you can form a very deep network. </p>
 <p>We also saw in lecture that having ResNet blocks with the shortcut also makes it very easy for one of the blocks to learn an identity function. This means that you can stack on additional ResNet blocks with little risk of harming training set performance. (There is also some evidence that the ease of learning an identity function—even more than skip connections helping with vanishing gradients—accounts for ResNets’ remarkable performance.)</p>
 <p>Two main types of blocks are used in a ResNet, depending mainly on whether the input/output dimensions are same or different. You are going to implement both of them. </p>
 <h3 id="2-1-The-identity-block"><a href="#2-1-The-identity-block" class="headerlink" title="2.1 - The identity block"></a>2.1 - The identity block</h3><p>The identity block is the standard block used in ResNets, and corresponds to the case where the input activation (say $a^{[l]}$) has the same dimension as the output activation (say $a^{[l+2]}$). To flesh out the different steps of what happens in a ResNet’s identity block, here is an alternative diagram showing the individual steps:</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/idblock2_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/idblock2_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 3</b> </font></u><font color="purple">  : <b>Identity block.</b> Skip connection "skips over" 2 layers. </font></center></caption>
 
 <p>The upper path is the “shortcut path.” The lower path is the “main path.” In this diagram, we have also made explicit the CONV2D and ReLU steps in each layer. To speed up training we have also added a BatchNorm step. Don’t worry about this being complicated to implement—you’ll see that BatchNorm is just one line of code in Keras! </p>
 <p>In this exercise, you’ll actually implement a slightly more powerful version of this identity block, in which the skip connection “skips over” 3 hidden layers rather than 2 layers. It looks like this: </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/idblock3_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/idblock3_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 4</b> </font></u><font color="purple">  : <b>Identity block.</b> Skip connection "skips over" 3 layers.</font></center></caption>
 
 <p>Here’re the individual steps.</p>
@@ -486,7 +486,7 @@
 </table>
 
 <h2 id="2-2-The-convolutional-block"><a href="#2-2-The-convolutional-block" class="headerlink" title="2.2 - The convolutional block"></a>2.2 - The convolutional block</h2><p>You’ve implemented the ResNet identity block. Next, the ResNet “convolutional block” is the other type of block. You can use this type of block when the input and output dimensions don’t match up. The difference with the identity block is that there is a CONV2D layer in the shortcut path: </p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/convblock_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/convblock_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 4</b> </font></u><font color="purple">  : <b>Convolutional block</b> </font></center></caption>
 
 <p>The CONV2D layer in the shortcut path is used to resize the input $x$ to a different dimension, so that the dimensions match up in the final addition needed to add the shortcut value back to the main path. (This plays a similar role as the matrix $W_s$ discussed in lecture.) For example, to reduce the activation dimensions’s height and width by a factor of 2, you can use a 1x1 convolution with a stride of 2. The CONV2D layer on the shortcut path does not use any non-linear activation function. Its main role is to just apply a (learned) linear function that reduces the dimension of the input, so that the dimensions match up for the later addition step. </p>
@@ -542,7 +542,7 @@
 </table>
 
 <h2 id="3-Building-your-first-ResNet-model-50-layers"><a href="#3-Building-your-first-ResNet-model-50-layers" class="headerlink" title="3 - Building your first ResNet model (50 layers)"></a>3 - Building your first ResNet model (50 layers)</h2><p>You now have the necessary blocks to build a very deep ResNet. The following figure describes in detail the architecture of this neural network. “ID BLOCK” in the diagram stands for “Identity block,” and “ID BLOCK x3” means you should stack 3 identity blocks together.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/resnet_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/resnet_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 5</b> </font></u><font color="purple">  : <b>ResNet-50 model</b> </font></center></caption>
 
 <p>The details of this ResNet-50 model are:</p>
@@ -599,7 +599,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=<span class="string">'adam'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</span><br></pre></td></tr></table></figure>
 <p>The model is now ready to be trained. The only thing you need is a dataset.</p>
 <p>Let’s load the SIGNS Dataset.</p>
-<p><img src="http://p15k33cxk.bkt.clouddn.com/image/signs_data_kiank.png" alt=""></p>
+<p><img src="https://obser.oss-cn-beijing.aliyuncs.com/Class-4-Week-2-Residual-Networks/signs_data_kiank.png" alt="aliyun-obser"></p>
 <caption><center> <u> <font color="purple"> <b>Figure 6</b> </font></u><font color="purple">  : <b>SIGNS dataset</b> </font></center></caption>
 
 
@@ -1342,7 +1342,7 @@ ________________________________________________________________________________
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
